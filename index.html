@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fatima Aafreen | Islamic Education & Content Development</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Tajawal:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --emerald: #1a3a2a;
+      --emerald-mid: #2d5a3d;
+      --emerald-light: #3d7a52;
+      --gold: #c9a84c;
+      --gold-light: #e2c47a;
+      --gold-pale: #f5e9c8;
+      --cream: #faf6ee;
+      --parchment: #f0e8d0;
+      --text-dark: #1a1a14;
+      --text-mid: #3a3a2a;
+      --text-soft: #6a6a4a;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text-dark);
+      font-family: 'EB Garamond', serif;
+      overflow-x: hidden;
+    }
+
+    /* ── Geometric Pattern SVG background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%23c9a84c' stroke-width='0.4' opacity='0.18'%3E%3Cpolygon points='40,2 55,15 55,35 40,48 25,35 25,15'/%3E%3Cpolygon points='40,10 50,20 50,32 40,42 30,32 30,20'/%3E%3Cline x1='40' y1='2' x2='40' y2='78'/%3E%3Cline x1='2' y1='40' x2='78' y2='40'/%3E%3Cline x1='15' y1='15' x2='65' y2='65'/%3E%3Cline x1='65' y1='15' x2='15' y2='65'/%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(26,58,42,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5vw;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(242,235,210,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, var(--emerald) 0%, #0f2419 60%, #1a2a1a 100%);
+      overflow: hidden;
+      padding: 100px 5vw 80px;
+    }
+
+    .hero-ornament {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.15);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: rotateSlow 60s linear infinite;
+    }
+
+    .hero-ornament::before {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .hero-ornament::after {
+      content: '';
+      position: absolute;
+      inset: 50px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.08);
+    }
+
+    @keyframes rotateSlow { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 780px;
+    }
+
+    .hero-bismillah {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.2s;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 1rem auto;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.4s;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.5s;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-subtitle {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(242,235,210,0.55);
+      margin-top: 1.4rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.7s;
+    }
+
+    .hero-bio {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.9;
+      color: rgba(242,235,210,0.72);
+      max-width: 560px;
+      margin: 2rem auto 0;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.9s;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      margin-top: 2.8rem;
+      padding: 0.8rem 2.4rem;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 1.1s;
+    }
+
+    .hero-cta:hover {
+      background: var(--gold);
+      color: var(--emerald);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTIONS COMMON ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 5vw;
+    }
+
+    .section-label {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--emerald);
+      margin-bottom: 3rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--emerald-light);
+    }
+
+    .gold-rule {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--parchment);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6vw;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .about-text p {
+      font-size: 1.12rem;
+      line-height: 1.95;
+      color: var(--text-mid);
+      margin-bottom: 1.3rem;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .pillar {
+      padding: 1.4rem 1.6rem;
+      background: white;
+      border-left: 3px solid var(--gold);
+      box-shadow: 0 2px 16px rgba(26,58,42,0.06);
+    }
+
+    .pillar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--emerald);
+      margin-bottom: 0.4rem;
+    }
+
+    .pillar-text {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-soft);
+    }
+
+    /* ── SKILLS ── */
+    #skills {
+      background: var(--cream);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .skill-card {
+      background: white;
+      padding: 2rem 1.8rem;
+      border: 1px solid rgba(201,168,76,0.2);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--emerald), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,58,42,0.1); }
+    .skill-card:hover::before { transform: scaleX(1); }
+
+    .skill-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--emerald);
+      margin-bottom: 0.6rem;
+    }
+
+    .skill-desc {
+      font-size: 0.94rem;
+      line-height: 1.75;
+      color: var(--text-soft);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      background: var(--gold-pale);
+      color: var(--emerald-mid);
+      border: 1px solid rgba(201,168,76,0.3);
+    }
+
+    /* ── PORTFOLIO ── */
+    #portfolio {
+      background: var(--emerald);
+      color: var(--cream);
+    }
+
+    #portfolio .section-title { color: var(--gold-light); }
+    #portfolio .section-label { color: rgba(201,168,76,0.7); }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .portfolio-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 2.2rem 2rem;
+      position: relative;
+      transition: background 0.25s;
+    }
+
+    .portfolio-card:hover { background: rgba(255,255,255,0.08); }
+
+    .portfolio-card-type {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .portfolio-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .portfolio-card-desc {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: rgba(242,235,210,0.68);
+    }
+
+    .portfolio-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .meta-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .meta-text {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: rgba(201,168,76,0.7);
+    }
+
+    /* ── SOURCES ── */
+    #sources {
+      background: var(--parchment);
+    }
+
+    .sources-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .source-category h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--emerald);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+    }
+
+    .source-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .source-list li {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+    }
+
+    .source-list li::before {
+      content: '◆';
+      color: var(--gold);
+      font-size: 0.5rem;
+      margin-top: 0.45rem;
+      flex-shrink: 0;
+    }
+
+    .source-name {
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text-dark);
+    }
+
+    .source-author {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      margin-top: 0.1rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: linear-gradient(160deg, #0f2419 0%, var(--emerald) 100%);
+      text-align: center;
+    }
+
+    #contact .section-title { color: var(--gold-light); }
+    #contact .section-label { color: rgba(201,168,76,0.6); }
+    #contact .gold-rule { margin: 0 auto 2rem; }
+
+    .contact-verse {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: rgba(242,235,210,0.65);
+      max-width: 560px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .contact-btn-primary {
+      background: var(--gold);
+      color: var(--emerald);
+    }
+
+    .contact-btn-primary:hover {
+      background: var(--gold-light);
+    }
+
+    .contact-btn-secondary {
+      border: 1px solid rgba(201,168,76,0.5);
+      color: var(--gold-light);
+    }
+
+    .contact-btn-secondary:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      background: #080f0a;
+      padding: 2rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(201,168,76,0.12);
+    }
+
+    .footer-text {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.78rem;
+      color: rgba(242,235,210,0.35);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-arabic {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1rem;
+      color: rgba(201,168,76,0.4);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .about-grid,
+      .skills-grid,
+      .portfolio-grid,
+      .sources-layout { grid-template-columns: 1fr; }
+
+      nav { padding: 0 4vw; }
+      .nav-links { gap: 1.4rem; }
+      footer { flex-direction: column; gap: 0.6rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Fatima Aafreen</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#sources">Sources</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-ornament"></div>
+  <div class="hero-content">
+    <div class="hero-bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+    <div class="hero-divider"></div>
+    <h1 class="hero-title">Islamic Education<br><em>&amp; Content Developer</em></h1>
+    <p class="hero-subtitle">Teaching Assistant · Curriculum Design · Islamic Research</p>
+    <p class="hero-bio">
+      Dedicated to nurturing minds through Islamically-grounded education —
+      weaving classical scholarship with contemporary pedagogy to inspire
+      the next generation of Muslim learners.
+    </p>
+    <a href="#portfolio" class="hero-cta">View My Work</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Rooted in <em>Tradition</em>,<br>Engaged with the Present</h2>
+      <div class="gold-rule"></div>
+      <p>
+        I am a passionate Islamic educator and content developer with a deep commitment
+        to producing materials that are both academically rigorous and spiritually enriching.
+        My work bridges the classical tradition of Islamic learning with the needs of Muslim
+        communities in the contemporary Canadian context.
+      </p>
+      <p>
+        Having studied under qualified scholars and engaged extensively with both Arabic
+        primary sources and English secondary literature, I bring a nuanced, research-driven
+        approach to every educational project I undertake — from structured lesson plans
+        to long-form written content.
+      </p>
+      <p>
+        I am currently seeking the Teaching Assistant role at ISNA Canada, where I hope
+        to contribute meaningfully to curriculum development, student support, and the
+        broader mission of Islamic education in our community.
+      </p>
+    </div>
+    <div class="about-pillars">
+      <div class="pillar">
+        <div class="pillar-title">📖 Content Development</div>
+        <div class="pillar-text">Designing lesson plans, worksheets, and multimedia content anchored in Quranic guidance and prophetic tradition, adapted for diverse age groups and learning levels.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">✍️ Writing & Research</div>
+        <div class="pillar-text">Producing well-structured Islamic articles, educational handouts, and research papers drawing on verified classical and contemporary scholarship.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">🗂️ Organisation & Planning</div>
+        <div class="pillar-text">Managing program schedules, resource libraries, and educational calendars with systematic precision to support teaching teams and students alike.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">🌙 Islamic Grounding</div>
+        <div class="pillar-text">All content produced is rooted in sound aqeedah, aligned with the Quran and authentic Sunnah, and reviewed against established scholarly positions.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label">Competencies</div>
+    <h2 class="section-title">Skills &amp; <em>Expertise</em></h2>
+    <div class="gold-rule"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">📚</div>
+      <div class="skill-name">Curriculum Design</div>
+      <div class="skill-desc">Developing scope-and-sequence frameworks for Islamic Studies, Quran, Fiqh, and Seerah — tailored for children, youth, and adults.</div>
+      <div class="skill-tags">
+        <span class="tag">Lesson Planning</span>
+        <span class="tag">Scope & Sequence</span>
+        <span class="tag">Differentiation</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🖊️</div>
+      <div class="skill-name">Islamic Writing</div>
+      <div class="skill-desc">Articles, khutbah drafts, educational booklets, and social media content — all grounded in authentic sources and accessible to general Muslim audiences.</div>
+      <div class="skill-tags">
+        <span class="tag">Long-Form</span>
+        <span class="tag">Editing</span>
+        <span class="tag">SEO-aware</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔍</div>
+      <div class="skill-name">Scholarly Research</div>
+      <div class="skill-desc">Competent in navigating classical Arabic texts, tafsir collections, hadith databases (Sunnah.com, al-Maktaba al-Shamela), and peer-reviewed Islamic journals.</div>
+      <div class="skill-tags">
+        <span class="tag">Arabic Sources</span>
+        <span class="tag">Tafsir</span>
+        <span class="tag">Hadith Sciences</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗣️</div>
+      <div class="skill-name">Student Support</div>
+      <div class="skill-desc">Tutoring students in Quran recitation, Islamic studies, and Arabic — creating safe, encouraging environments where learners can grow in knowledge and iman.</div>
+      <div class="skill-tags">
+        <span class="tag">Tutoring</span>
+        <span class="tag">Mentorship</span>
+        <span class="tag">Youth Work</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">Digital Content</div>
+      <div class="skill-desc">Creating visually polished Islamic educational materials using Canva, Google Workspace, and basic web tools — optimized for community distribution.</div>
+      <div class="skill-tags">
+        <span class="tag">Canva</span>
+        <span class="tag">Google Docs</span>
+        <span class="tag">Social Media</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🤝</div>
+      <div class="skill-name">Community Engagement</div>
+      <div class="skill-desc">Experienced in coordinating Islamic programs, interfaith dialogue events, and community outreach initiatives within Canadian Muslim organizations.</div>
+      <div class="skill-tags">
+        <span class="tag">Outreach</span>
+        <span class="tag">Events</span>
+        <span class="tag">Facilitation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <style>
+    .proj-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .proj-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.25);
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .proj-card.open { border-color: rgba(201,168,76,0.6); }
+    .proj-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.8rem 2rem;
+      cursor: pointer;
+      user-select: none;
+      gap: 1.5rem;
+    }
+    .proj-header:hover .proj-toggle { color: var(--gold); }
+    .proj-header-left { flex: 1; }
+    .proj-type {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .proj-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 1.25;
+    }
+    .proj-toggle {
+      font-size: 1.5rem;
+      color: rgba(201,168,76,0.5);
+      transition: transform 0.35s, color 0.2s;
+      flex-shrink: 0;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .proj-card.open .proj-toggle { transform: rotate(45deg); color: var(--gold); }
+    .proj-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .proj-card.open .proj-body { max-height: 1200px; }
+    .proj-inner {
+      padding: 0 2rem 2rem;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      padding-top: 1.6rem;
+    }
+    .proj-intro {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: rgba(242,235,210,0.75);
+      margin-bottom: 1.6rem;
+      font-style: italic;
+    }
+    .proj-content-title {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      margin-top: 1.4rem;
+    }
+    .proj-content-body {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(242,235,210,0.68);
+    }
+    .proj-content-body p { margin-bottom: 1rem; }
+    .proj-content-body p:last-child { margin-bottom: 0; }
+    .proj-quote {
+      border-left: 2px solid var(--gold);
+      padding: 0.8rem 1.2rem;
+      margin: 1.2rem 0;
+      background: rgba(201,168,76,0.06);
+    }
+    .proj-quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--gold-light);
+      line-height: 1.7;
+    }
+    .proj-quote-ref {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(201,168,76,0.55);
+      margin-top: 0.4rem;
+      letter-spacing: 0.06em;
+    }
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1.4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(201,168,76,0.12);
+    }
+    .proj-tag {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      background: rgba(201,168,76,0.1);
+      color: var(--gold-light);
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .day-samples {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    .day-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.15);
+      padding: 1rem;
+    }
+    .day-num {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .day-text {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: rgba(242,235,210,0.6);
+    }
+    @media(max-width:600px){
+      .day-samples { grid-template-columns: 1fr; }
+      .proj-header { padding: 1.4rem; }
+      .proj-inner { padding: 0 1.4rem 1.4rem; padding-top: 1.4rem; }
+    }
+  </style>
+
+  <div style="max-width:900px;margin:0 auto;">
+    <div class="section-label">Selected Work</div>
+    <h2 class="section-title" style="color:var(--gold-light);">Content &amp; <em style="color:var(--cream)">Research Projects</em></h2>
+    <div class="gold-rule"></div>
+  </div>
+
+  <div class="proj-grid">
+
+    <!-- PROJECT 1 -->
+    <div class="proj-card" id="proj1">
+      <div class="proj-header" onclick="toggleProj('proj1')">
+        <div class="proj-header-left">
+          <div class="proj-type">Written Article · Youth & Children's Education</div>
+          <div class="proj-title">Teaching Islam to Children: Nurturing Faith from the Earliest Years</div>
+        </div>
+        <div class="proj-toggle">+</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-inner">
+          <div class="proj-intro">
+            An educational article exploring evidence-based, Islamically-grounded approaches to teaching young children about their faith — from aqeedah fundamentals to Quranic habits — drawing on prophetic guidance and contemporary pedagogy.
+          </div>
+
+          <div class="proj-content-title">Overview</div>
+          <div class="proj-content-body">
+            <p>
+              The Prophet ﷺ said: <em>"Every child is born in a state of fitrah"</em> (Sahih al-Bukhari). This foundational truth shapes the entire philosophy of Islamic early childhood education: children are not blank slates to be filled, but souls already inclined toward their Creator — and our role as educators is to nurture, not impose.
+            </p>
+          </div>
+
+          <div class="proj-quote">
+            <div class="proj-quote-text">"Command your children to pray when they are seven years old, and discipline them for it when they are ten."</div>
+            <div class="proj-quote-ref">— Prophet Muhammad ﷺ · Sunan Abu Dawud, 495</div>
+          </div>
+
+          <div class="proj-content-title">Key Themes Covered</div>
+          <div class="proj-content-body">
+            <p><strong style="color:var(--gold-light)">1. Age-Appropriate Aqeedah:</strong> Introducing the concept of Allah ﷻ to young children through His beautiful names (Al-Rahman, Al-Wadud, Al-Khaliq) rather than abstract theological definitions. Stories of creation, gratitude, and wonder form the foundation.</p>
+            <p><strong style="color:var(--gold-light)">2. The Role of Routine and Ritual:</strong> How daily Islamic practices — saying Bismillah before meals, making du'a before sleep, hearing Quran during play — become anchors of faith identity long before formal instruction begins. Research in child development confirms that ritual repetition builds both neural pathways and emotional security.</p>
+            <p><strong style="color:var(--gold-light)">3. Storytelling as Pedagogy:</strong> The Quran itself uses narrative as its primary teaching tool. Drawing on the stories of the Prophets (Anbiya), particularly those appropriate for young children — Prophet Yunus, Prophet Ibrahim, and Prophet Isa — to teach values of patience, trust in Allah, and courage.</p>
+            <p><strong style="color:var(--gold-light)">4. The Educator's Intention (Niyyah):</strong> Grounding the teaching relationship in sincerity. Ibn Khaldun's Muqaddimah notes that the teacher's character is the most powerful curriculum. Children absorb the iman of those around them more than any lesson plan.</p>
+          </div>
+
+          <div class="proj-content-title">Curriculum Recommendations</div>
+          <div class="proj-content-body">
+            <p>
+              The article concludes with a practical framework for weekend Islamic school programs (Ages 5–10), including a sample weekly structure: Quran recitation warm-up (10 min) → Themed story with discussion (15 min) → Craft or activity reinforcing the lesson (20 min) → Du'a and closing reflection (5 min). This structure reflects the Prophet's ﷺ practice of varied, engaging, and never burdensome teaching.
+            </p>
+          </div>
+
+          <div class="proj-tags">
+            <span class="proj-tag">Children's Education</span>
+            <span class="proj-tag">Aqeedah</span>
+            <span class="proj-tag">Curriculum Design</span>
+            <span class="proj-tag">Prophetic Pedagogy</span>
+            <span class="proj-tag">Ages 5–10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="proj-card" id="proj2">
+      <div class="proj-header" onclick="toggleProj('proj2')">
+        <div class="proj-header-left">
+          <div class="proj-type">Long-Form Article · Islamic Scholarship</div>
+          <div class="proj-title">The Etiquettes of Seeking Knowledge in Islam</div>
+        </div>
+        <div class="proj-toggle">+</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-inner">
+          <div class="proj-intro">
+            A 2,800-word article examining adab al-talab al-'ilm — the proper etiquettes of seeking Islamic knowledge — through the lens of classical scholars. Written for adult Muslim readers navigating the balance between traditional learning and contemporary life.
+          </div>
+
+          <div class="proj-content-title">Introduction</div>
+          <div class="proj-content-body">
+            <p>
+              Imam al-Shafi'i once said: <em>"Knowledge is not what is memorised — knowledge is what benefits."</em> In an age of information abundance, the Islamic tradition's emphasis on the adab (etiquette) of learning is more urgent than ever. Classical scholars did not merely transmit information; they transmitted a way of being with knowledge — a posture of humility, sincerity, and reverence that transformed the student before transforming the world.
+            </p>
+          </div>
+
+          <div class="proj-quote">
+            <div class="proj-quote-text">"Seek knowledge even if it be in China."</div>
+            <div class="proj-quote-ref">— Attributed to the Prophet ﷺ · Cited in classical works on the pursuit of knowledge</div>
+          </div>
+
+          <div class="proj-content-title">The Classical Framework</div>
+          <div class="proj-content-body">
+            <p><strong style="color:var(--gold-light)">Sincerity of Intention (Ikhlas):</strong> Imam al-Nawawi opens his Majmu' with a reminder that knowledge sought for worldly gain loses its barakah. The student must constantly renew the intention that their learning is for the sake of Allah ﷻ and the benefit of the ummah — not status or admiration.</p>
+            <p><strong style="color:var(--gold-light)">Honouring the Teacher:</strong> Ibn Jama'ah's Tadhkirat al-Sami' dedicates entire chapters to the student-teacher relationship. The student should not contradict the teacher publicly, should arrive early and leave last, and should make du'a for their teacher's wellbeing. This is not blind deference — it is the recognition that knowledge is transmitted through hearts, not merely texts.</p>
+            <p><strong style="color:var(--gold-light)">Acting Upon What is Learned:</strong> Al-Khatib al-Baghdadi's Iqtida al-'Ilm al-'Amal (Knowledge Demands Action) is perhaps the most direct classical treatment of this principle. Knowledge that does not change one's character and behaviour is considered by the scholars to be a liability, not an asset.</p>
+          </div>
+
+          <div class="proj-quote">
+            <div class="proj-quote-text">"The scholar whose knowledge is not acted upon is like a lamp that gives light to others while burning itself."</div>
+            <div class="proj-quote-ref">— Classical Arabic proverb cited in adab al-'ilm literature</div>
+          </div>
+
+          <div class="proj-content-title">Contemporary Application</div>
+          <div class="proj-content-body">
+            <p>
+              The article concludes by examining how these classical etiquettes apply to modern Islamic education in Canada — from online learning platforms to weekend schools. The challenge of the digital age is not access to knowledge, but the cultivation of the inner qualities that make knowledge transformative. Programs like those at ISNA Canada that combine structured Islamic education with mentorship and community are the closest contemporary equivalent to the classical halaqah model.
+            </p>
+          </div>
+
+          <div class="proj-tags">
+            <span class="proj-tag">Adab al-'Ilm</span>
+            <span class="proj-tag">Al-Nawawi</span>
+            <span class="proj-tag">Ibn Jama'ah</span>
+            <span class="proj-tag">Al-Baghdadi</span>
+            <span class="proj-tag">Adult Education</span>
+            <span class="proj-tag">2,800 words</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="proj-card" id="proj3">
+      <div class="proj-header" onclick="toggleProj('proj3')">
+        <div class="proj-header-left">
+          <div class="proj-type">Project Proposal · Digital Content Series</div>
+          <div class="proj-title">Ramadan Reflection Series — 30-Day Social Content Plan</div>
+        </div>
+        <div class="proj-toggle">+</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-inner">
+          <div class="proj-intro">
+            A proposed 30-day Islamically-researched social content series designed for a Canadian Muslim community platform. The concept centres on daily posts pairing a Quranic ayah, hadith, or scholarly reflection with a short, meaningful prompt to help community members stay spiritually engaged throughout Ramadan.
+          </div>
+
+          <div class="proj-content-title">The Vision</div>
+          <div class="proj-content-body">
+            <p>
+              Ramadan is the month of the Quran — yet for many community members, the spiritual potential of the month can get lost in routine. This project proposes a structured 30-day content series that meets people where they already are (social media) and draws them closer to the Quran, the Sunnah, and intentional reflection — one post at a time.
+            </p>
+            <p>
+              The series would follow the classical tripartite division of Ramadan: the first ten days themed around <strong style="color:var(--gold-light)">Mercy (Rahmah)</strong>, the middle ten around <strong style="color:var(--gold-light)">Forgiveness (Maghfirah)</strong>, and the final ten around <strong style="color:var(--gold-light)">Freedom from the Fire (Itq min al-Nar)</strong> — giving the month a meaningful narrative arc rather than a collection of disconnected posts.
+            </p>
+          </div>
+
+          <div class="proj-content-title">Proposed Content Structure (Sample Days)</div>
+          <div class="day-samples">
+            <div class="day-card">
+              <div class="day-num">Day 1 · Mercy — Concept</div>
+              <div class="day-text">Open with Quran 2:185 and the hadith on the gates of Jannah. Prompt: <em>"Name one mercy of Allah you often overlook. Write it down today."</em> Designed to set a tone of gratitude from day one.</div>
+            </div>
+            <div class="day-card">
+              <div class="day-num">Day 14 · Forgiveness — Concept</div>
+              <div class="day-text">Draw on Ibn al-Qayyim's writings on the heart. Prompt: <em>"Is there someone you need to forgive — not for them, but to free yourself?"</em> Paired with du'a for a softened heart.</div>
+            </div>
+            <div class="day-card">
+              <div class="day-num">Day 27 · Laylat al-Qadr — Concept</div>
+              <div class="day-text">Reference Quran 97:1–5 and the Prophet's ﷺ increased worship in the last ten nights. Prompt: <em>"Write your du'a list — not just what you want, but who you are praying for."</em></div>
+            </div>
+          </div>
+
+          <div class="proj-content-title">Research & Quality Standards</div>
+          <div class="proj-content-body">
+            <p>
+              Every post in the proposed series would be grounded in verified sources. All Quranic references would be drawn from established tafsir works (Ibn Kathir, al-Sa'di, and Tafhim al-Quran). All hadith would be checked for authenticity via Sunnah.com and cross-referenced before publication — ensuring the community only receives sound, reliable Islamic content.
+            </p>
+            <p>
+              Visually, each post would follow a consistent branded template (emerald, gold, and white) designed in Canva, optimised for both Instagram and Facebook. A content scheduling tool would ensure daily posting consistency throughout the month without last-minute production pressure.
+            </p>
+          </div>
+
+          <div class="proj-content-title">Why This Matters</div>
+          <div class="proj-content-body">
+            <p>
+              Islamic social media content is often either too shallow to be spiritually meaningful or too academic to be accessible. This series is designed to bridge that gap — rooted in scholarship, but written in a voice that speaks to everyday Canadian Muslims: students, parents, professionals, and new Muslims alike. The goal is not viral content — it is content that plants seeds of taqwa.
+            </p>
+          </div>
+
+          <div class="proj-tags">
+            <span class="proj-tag">Project Proposal</span>
+            <span class="proj-tag">Ramadan</span>
+            <span class="proj-tag">Social Media</span>
+            <span class="proj-tag">Content Planning</span>
+            <span class="proj-tag">Tafsir Research</span>
+            <span class="proj-tag">Community Outreach</span>
+            <span class="proj-tag">30 Days</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleProj(id) {
+      const card = document.getElementById(id);
+      card.classList.toggle('open');
+    }
+  </script>
+</section>
+
+<!-- SOURCES -->
+<section id="sources">
+  <style>
+    .studied-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .studied-card {
+      background: white;
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 1.6rem 1.8rem;
+      position: relative;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .studied-card:hover {
+      box-shadow: 0 8px 32px rgba(26,58,42,0.09);
+      transform: translateY(-2px);
+    }
+    .studied-card-type {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .studied-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--emerald);
+      line-height: 1.3;
+      margin-bottom: 0.25rem;
+    }
+    .studied-card-author {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      margin-bottom: 0.9rem;
+      letter-spacing: 0.03em;
+    }
+    .studied-card-note {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: var(--text-mid);
+      border-left: 2px solid var(--gold-pale);
+      padding-left: 0.9rem;
+    }
+    @media(max-width: 700px) {
+      .studied-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label">Scholarly Foundation</div>
+    <h2 class="section-title">Sources &amp; <em>References</em></h2>
+    <div class="gold-rule"></div>
+    <p style="font-family:'EB Garamond',serif;font-size:1.08rem;line-height:1.85;color:var(--text-soft);max-width:680px;margin-bottom:2.8rem;">
+      Familiarity with Islamic sources is not simply a list of titles — it is an ongoing relationship with scholarship. Below are key works I have engaged with, and how each has shaped my approach to Islamic education and content development.
+    </p>
+  </div>
+
+  <div class="studied-grid">
+
+    <div class="studied-card">
+      <div class="studied-card-type">Classical · Tafsir</div>
+      <div class="studied-card-title">Tafsir Ibn Kathir (Tafsir al-Quran al-Azim)</div>
+      <div class="studied-card-author">Imam Ibn Kathir al-Dimashqi (d. 1373 CE)</div>
+      <div class="studied-card-note">
+        My primary reference for Quranic content development. I rely on Ibn Kathir to verify the context (asbab al-nuzul) of ayat before using them in educational material, ensuring nothing is quoted out of its intended meaning. His narrative style also informs how I present Quranic stories to younger audiences.
+      </div>
+    </div>
+
+    <div class="studied-card">
+      <div class="studied-card-type">Classical · Tafsir</div>
+      <div class="studied-card-title">Tafsir al-Sa'di (Taysir al-Karim al-Rahman)</div>
+      <div class="studied-card-author">Shaykh Abdur Rahman al-Sa'di (d. 1956 CE)</div>
+      <div class="studied-card-note">
+        I turn to al-Sa'di when writing for general audiences — his tafsir is concise, accessible, and rich in practical lessons. For social media content and community-facing writing, his explanations translate well into modern reflective prompts without losing scholarly grounding.
+      </div>
+    </div>
+
+    <div class="studied-card">
+      <div class="studied-card-type">Classical · Spirituality</div>
+      <div class="studied-card-title">Ihya 'Ulum al-Din (Revival of the Religious Sciences)</div>
+      <div class="studied-card-author">Imam Abu Hamid al-Ghazali (d. 1111 CE)</div>
+      <div class="studied-card-note">
+        Al-Ghazali's Ihya has been foundational to understanding how Islamic knowledge should transform the inner self — not just inform the mind. This shapes how I design educational content: I ask not only "what will students learn?" but "how will this change how they feel and act?" His sections on sincerity and intention directly informed my article on the etiquettes of seeking knowledge.
+      </div>
+    </div>
+
+    <div class="studied-card">
+      <div class="studied-card-type">Classical · Adab al-'Ilm</div>
+      <div class="studied-card-title">Tadhkirat al-Sami' wal-Mutakallim</div>
+      <div class="studied-card-author">Ibn Jama'ah al-Kinani (d. 1333 CE)</div>
+      <div class="studied-card-note">
+        This is perhaps the most detailed classical manual on the etiquettes of the student-teacher relationship. I studied it while researching my article on adab al-talab al-'ilm and found it transformative — particularly its chapters on how the student should carry themselves in the presence of a teacher. It has changed how I approach my own role as both a learner and an educator.
+      </div>
+    </div>
+
+    <div class="studied-card">
+      <div class="studied-card-type">Contemporary · Seerah</div>
+      <div class="studied-card-title">The Sealed Nectar (Al-Rahiq al-Makhtum)</div>
+      <div class="studied-card-author">Shaykh Safiur Rahman al-Mubarakpuri (Darussalam, 1979)</div>
+      <div class="studied-card-note">
+        My go-to reference for seerah content aimed at youth. Al-Mubarakpuri's narrative is detailed yet flowing, making it well-suited for extracting stories and lessons that resonate with younger learners. I use it as the backbone for any Prophet ﷺ-focused curriculum I develop, cross-referencing with Ibn Hisham for primary sourcing.
+      </div>
+    </div>
+
+    <div class="studied-card">
+      <div class="studied-card-type">Contemporary · Islamic Education</div>
+      <div class="studied-card-title">Being Muslim: A Practical Guide</div>
+      <div class="studied-card-author">Asad Tarsin (Sandala Inc., 2015)</div>
+      <div class="studied-card-note">
+        One of the clearest contemporary introductions to Islamic practice written for Western Muslim audiences. I draw on its structure and tone when developing beginner-level Islamic content — it demonstrates how classical fiqh rulings can be explained accessibly without sacrificing accuracy. A constant reference when designing content for new Muslims or younger students encountering formal Islamic practice for the first time.
+      </div>
+    </div>
+
+    <div class="studied-card">
+      <div class="studied-card-type">Contemporary · Community & Education</div>
+      <div class="studied-card-title">Agenda to Change Our Condition</div>
+      <div class="studied-card-author">Hamza Yusuf & Zaid Shakir (Zaytuna Institute, 2007)</div>
+      <div class="studied-card-note">
+        This short but powerful work frames Islamic education as an act of community renewal. It has shaped my understanding of why Islamic education in Canada matters beyond individual piety — it is about building a generation of Muslims who are grounded, contributing, and spiritually resilient. I return to it when I need to reconnect with the purpose behind the work.
+      </div>
+    </div>
+
+    <div class="studied-card">
+      <div class="studied-card-type">Research Tool · Hadith Sciences</div>
+      <div class="studied-card-title">Sunnah.com — Authenticated Hadith Database</div>
+      <div class="studied-card-author">Collections: Bukhari, Muslim, Abu Dawud, Tirmidhi, Nasai, Ibn Majah</div>
+      <div class="studied-card-note">
+        My primary tool for hadith research and verification. Before any hadith appears in content I produce — whether a social media post, lesson plan, or article — I verify its chain and grading through Sunnah.com, cross-referencing with Shaykh al-Albani's gradings where applicable. Ensuring the soundness of every narration is a non-negotiable part of my content process.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2 class="section-title" style="color:var(--gold-light);max-width:600px;margin:0 auto 1rem;">Open to <em style="color:var(--cream)">Opportunities</em></h2>
+  <div class="gold-rule" style="margin:0 auto 1.5rem;"></div>
+  <p class="contact-verse">
+    "And say: My Lord, increase me in knowledge."<br>
+    <span style="font-size:0.85rem;letter-spacing:0.08em;font-style:normal;font-family:'Tajawal',sans-serif;color:rgba(201,168,76,0.5);">— Quran 20:114</span>
+  </p>
+  <div class="contact-links">
+    <a href="/cdn-cgi/l/email-protection#513030372334343f373025383c307f616411363c30383d7f323e3c" class="contact-btn contact-btn-primary">Send an Email</a>
+    <a href="https://www.linkedin.com/in/fatimaaafreen/" target="_blank" class="contact-btn contact-btn-secondary">LinkedIn Profile</a>
+    <a href="#portfolio" class="contact-btn contact-btn-secondary">View Portfolio</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-t
